@@ -1,11 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Webpage Title -->
     <title>Document</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- 구글폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+
+    <!-- Style  -->
+    <style type="text/css">
+        .goods {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        * {
+            font-family: 'Stylish', sans-serif;
+        }
+
+    </style>
 </head>
+
 <body>
-    Homework
+    <div class="goods">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="../image/image_401.jpg" alt="Card image cap">
+            <div class="card-body">
+
+                <!-- Image  -->
+                <h5 class="card-title">김종국 하하 401 불막창 3팩</h5>
+                <hr class="my-4">
+                <p style="text-decoration: line-through;">정가&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp25,500원</p>
+                판매가&nbsp&nbsp&nbsp18,900원&nbsp&nbsp&nbsp<font size="5" color="red">-26%↓</font><br>
+                배송비 무료택배
+
+                <!-- Name Input -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">주문자이름</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="주문자이름" aria-label="Username"
+                        aria-describedby="basic-addon1">
+                </div>
+
+                <!-- Set number -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">수량</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>-- 수량을 선택하세요. --</option>
+                        <option value="1">1 Set</option>
+                        <option value="2">2 Set</option>
+                        <option value="3">3 Set</option>
+                    </select>
+                </div>
+
+                <!-- Address -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-address">주소</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="주소" aria-label="Address"
+                        aria-describedby="basic-address">
+                </div>
+
+                <!-- Phone -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-number">전화번호</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="전화번호" aria-label="Number"
+                        aria-describedby="basic-number">
+                </div>
+
+                <!-- Order Button -->
+                <center>
+                    <a href="#" class="btn btn-primary">주문하기</a>
+                </center>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
