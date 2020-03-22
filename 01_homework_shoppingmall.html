@@ -40,13 +40,104 @@
         * {
             font-family: 'Stylish', sans-serif;
         }
-
     </style>
+
+    <script>
+
+        function set_OrderNumber(select) {
+            for (let num = 1; select < 6; num++) {
+                let select_box_option = "<option value=" + num + "</option>"
+                $("#inputGroupSelect01").append(select_box_option)
+            }
+        }
+
+        function inNumber() {
+            if (event.keyCode < 48 || event.keyCode > 57) {
+                event.returnValue = false;
+                alert("숫자만 입력가능합니다.");
+            }
+        }
+
+        function inputPhoneNumber(obj) {
+            let number = obj.value.replace(/[^0-9]/g, "");
+            let phone = "";
+
+            if (number.length < 4) {
+                return number;
+            }
+            else if (number.length < 7) {
+                phone += number.substr(0, 3);
+                phone += "-";
+                phone += number.substr(3);
+            }
+            else if (number.length < 11) {
+                phone += number.substr(0, 3);
+                phone += "-";
+                phone += number.substr(3, 3);
+                phone += "-";
+                phone += number.substr(6);
+            }
+            else {
+                phone += number.substr(0, 3);
+                phone += "-";
+                phone += number.substr(3, 4);
+                phone += "-";
+                phone += number.substr(7);
+            }
+
+            obj.value = phone;
+        }
+
+        function btn_order() {
+            // Input Check
+            if ($("#inputName").val() == '')
+            {
+                alert("주문자 이름을 입력하세요!!");
+                $("#inputName").focus();
+            }
+            else if ($("#inputGroupSelect01 option").index($("#inputGroupSelect01 option:selected")) < 1)
+            {
+                alert("주문 수량을 입력하세요!!");
+                $("#inputGroupSelect01").focus();
+            }
+            else if ($("#inputAddress").val() == '')
+            {
+                alert("주소를 입력하세요!!");
+                $("#inputAddress").focus();
+            }
+            else if ($("#inputPhone").val() == '')
+            {
+                alert("전화번호를 입력하세요!!");
+                $("#inputPhone").focus();
+            }
+            else
+            {
+                // Append
+                let htmlInput = "";
+
+                htmlInput = "<tr><td>" + $("#inputName").val() 
+                         + "</td><td>" + $("#inputGroupSelect01 option:selected").val()
+                         + "</td><td>" + $("#inputAddress").val()
+                         + "</td><td>" + $("#inputPhone").val();
+                $("#order_Tbody").append(htmlInput);
+
+                // Send Server
+
+
+                // Initialized
+                $("#inputName").val("");
+                $("#inputGroupSelect01").val("0");
+                $("#inputAddress").val("");
+                $("#inputPhone").val("");
+            }
+        }
+
+    </script>
 </head>
 
 <body>
     <div class="goods">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 30rem;">
             <img class="card-img-top" src="image_401.jpg" alt="Card image cap">
             <div class="card-body">
 
@@ -62,7 +153,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">주문자이름</span>
                     </div>
-                    <input type="text" class="form-control" placeholder="주문자이름" aria-label="Username"
+                    <input id="inputName" type="text" class="form-control" placeholder="주문자이름" aria-label="Username"
                         aria-describedby="basic-addon1">
                 </div>
 
@@ -71,12 +162,14 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">수량</label>
                     </div>
+
                     <select class="custom-select" id="inputGroupSelect01">
                         <option selected>-- 수량을 선택하세요. --</option>
                         <option value="1">1 Set</option>
                         <option value="2">2 Set</option>
                         <option value="3">3 Set</option>
                     </select>
+
                 </div>
 
                 <!-- Address -->
@@ -84,7 +177,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-address">주소</span>
                     </div>
-                    <input type="text" class="form-control" placeholder="주소" aria-label="Address"
+                    <input id="inputAddress" type="text" class="form-control" placeholder="주소" aria-label="Address"
                         aria-describedby="basic-address">
                 </div>
 
@@ -93,14 +186,32 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-number">전화번호</span>
                     </div>
-                    <input type="text" class="form-control" placeholder="전화번호" aria-label="Number"
-                        aria-describedby="basic-number">
+                    <input id="inputPhone" type="text" onkeypress="inNumber();" onKeyup="inputPhoneNumber(this);"
+                        maxlength="13" class="form-control" placeholder="전화번호" aria-label="Number"
+                        aria-describedby="basic-number" style="text-align:center;">
                 </div>
 
                 <!-- Order Button -->
                 <center>
-                    <a href="#" class="btn btn-primary">주문하기</a>
+                    <button onclick="btn_order()" type="button" class="btn btn-primary">주문하기</button>
                 </center>
+
+                <!-- Output Database -->
+                <br>
+                <center>
+                    <caption>주문 리스트</caption>
+                </center>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">주문자</th>
+                            <th scope="col">수량</th>
+                            <th scope="col">주소</th>
+                            <th scope="col">전화번호</th>
+                        </tr>
+                    </thead>
+                    <tbody id="order_Tbody"></tbody>
+                </table>
             </div>
         </div>
     </div>
